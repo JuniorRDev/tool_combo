@@ -16,6 +16,17 @@ def extraer_lineas_dominio(combo, dominios):
     return lineas_dominio
 
 
+def eliminar_duplicados(lineas):
+    """
+    Elimina las líneas duplicadas de una lista y las devuelve en el mismo orden.
+    """
+    lineas_sin_duplicados = []
+    for linea in lineas:
+        if linea not in lineas_sin_duplicados:
+            lineas_sin_duplicados.append(linea)
+    return lineas_sin_duplicados
+
+
 def guardar_archivo(lineas):
     """
     Crea una carpeta con la fecha y hora actual y guarda un archivo con un nombre genérico y las líneas especificadas.
@@ -70,12 +81,15 @@ def main():
         print(f"No se encontraron líneas con los dominios {', '.join(dominios)}.")
         return
 
-    # Guardar las líneas en un archivo con un nombre genérico en una carpeta con la fecha y hora actual
-    ruta_archivo = guardar_archivo(lineas_dominio)
+    # Eliminar las líneas duplicadas
+    lineas_sin_duplicados = eliminar_duplicados(lineas_dominio)
+
+    # Guardar las líneas sin duplicados en un archivo con un nombre genérico en una carpeta con la fecha y hora actual
+    lineas_dominio_sin_duplicados = list(set(lineas_dominio))
+    ruta_archivo = guardar_archivo(lineas_dominio_sin_duplicados)
 
     # Mostrar un mensaje de éxito al usuario
-    messagebox.showinfo("Extracción completada", f"Se encontraron {len(lineas_dominio)} líneas con los dominios {', '.join(dominios)}.\nSe guardó un archivo con el nombre {os.path.basename(ruta_archivo)} en la carpeta {os.path.dirname(ruta_archivo)}.")
-
+    messagebox.showinfo("Extracción completada", f"Se encontraron {len(lineas_dominio_sin_duplicados)} líneas con los dominios {', '.join(dominios)}.\nSe guardó un archivo con el nombre {os.path.basename(ruta_archivo)} en la carpeta {os.path.dirname(ruta_archivo)}.")
 
 if __name__ == '__main__':
     main()
