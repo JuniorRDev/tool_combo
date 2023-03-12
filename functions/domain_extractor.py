@@ -51,15 +51,20 @@ def main():
     root.withdraw()
 
     # Pedir al usuario que ingrese los dominios separados por coma
-    dominios = simpledialog.askstring(title="Ingresar dominios", prompt="Ingrese los dominios del correo separados por coma (ej. @gmail.com, @hotmail.com):")
+    while True:
+        dominios = simpledialog.askstring(title="Ingresar dominios", prompt="Ingrese los dominios del correo separados por coma (ej. @gmail.com, @hotmail.com):")
+        
+        # Verificar si se ingresó algún dominio
+        if not dominios:
+            print("No se ingresó ningún dominio.")
+            return
 
-    # Verificar si se ingresó algún dominio
-    if not dominios:
-        print("No se ingresó ningún dominio.")
-        return
-
-    # Convertir los dominios a una lista
-    dominios = [dominio.strip() for dominio in dominios.split(",")]
+        # Convertir los dominios a una lista y verificar si todos comienzan con "@"
+        dominios = [dominio.strip() for dominio in dominios.split(",")]
+        if not all(dominio.startswith("@") for dominio in dominios):
+            messagebox.showerror("Error", "Todos los dominios deben comenzar con '@'.")
+        else:
+            break
 
     # Abrir el explorador de archivos para seleccionar el archivo combo
     ruta_combo = filedialog.askopenfilename(title="Seleccionar archivo combo")
@@ -84,12 +89,17 @@ def main():
     # Eliminar las líneas duplicadas
     lineas_sin_duplicados = eliminar_duplicados(lineas_dominio)
 
-    # Guardar las líneas sin duplicados en un archivo con un nombre genérico en una carpeta con la fecha y hora actual
-    lineas_dominio_sin_duplicados = list(set(lineas_dominio))
-    ruta_archivo = guardar_archivo(lineas_dominio_sin_duplicados)
+    # Verificar si quedaron dominios para buscar
+    if not lineas_sin_duplicados:
+        print(f"No se encontraron líneas con los dominios {', '.join(dominios)}.")
+        return
+
+    #Guardar las líneas sin duplicados en un archivo con un nombre genérico en una carpeta con la fecha y hora actual
+    lineas_sin_duplicados = list(set(lineas_sin_duplicados))
+    ruta_archivo = guardar_archivo(lineas_sin_duplicados)
 
     # Mostrar un mensaje de éxito al usuario
-    messagebox.showinfo("Extracción completada", f"Se encontraron {len(lineas_dominio_sin_duplicados)} líneas con los dominios {', '.join(dominios)}.\nSe guardó un archivo con el nombre {os.path.basename(ruta_archivo)} en la carpeta {os.path.dirname(ruta_archivo)}.")
-
+    messagebox.showinfo("Extracción completada", f"Se encontraron {len(lineas_sin_duplicados)} líneas con los dominios {', '.join(dominios)}.\nSe guardó un archivo con el nombre {os.path.basename(ruta_archivo)} en la carpeta {os.path.dirname(ruta_archivo)}.")
+    
 if __name__ == '__main__':
     main()
