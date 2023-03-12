@@ -3,7 +3,7 @@ from datetime import datetime
 from tkinter import filedialog, messagebox, simpledialog, Tk
 
 
-def extraer_lineas_dominio(combo, dominios):
+def domain_extractor(combo, dominios):
     """
     Extrae las líneas del combo que corresponden a los dominios especificados.
     """
@@ -79,7 +79,7 @@ def main():
         combo = archivo.readlines()
 
     # Extraer las líneas del combo que corresponden a los dominios especificados
-    lineas_dominio = extraer_lineas_dominio(combo, dominios)
+    lineas_dominio = domain_extractor(combo, dominios)
 
     # Verificar si se encontraron líneas para los dominios especificados
     if not lineas_dominio:
@@ -100,6 +100,6 @@ def main():
 
     # Mostrar un mensaje de éxito al usuario
     messagebox.showinfo("Extracción completada", f"Se encontraron {len(lineas_sin_duplicados)} líneas con los dominios {', '.join(dominios)}.\nSe guardó un archivo con el nombre {os.path.basename(ruta_archivo)} en la carpeta {os.path.dirname(ruta_archivo)}.")
-    
+
 if __name__ == '__main__':
     main()

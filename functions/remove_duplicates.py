@@ -2,7 +2,7 @@ import os
 from tkinter import filedialog, messagebox, Tk
 
 
-def remove_duplicates():
+def main():
     
     # Abre una ventana de selección de archivo y permite al usuario seleccionar un archivo .txt
     root = Tk()
@@ -30,5 +30,6 @@ def remove_duplicates():
     # Muestra un mensaje de éxito
     messagebox.showinfo("Éxito", "Se han removido las líneas duplicadas y en blanco del archivo seleccionado.")
 
+
 if __name__ == "__main__":
-    remove_duplicates()
+    main()

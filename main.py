@@ -22,7 +22,7 @@ def main():
 
     # Ejecutar el módulo correspondiente según la opción seleccionada
     if opcion == "1":
-        remove_duplicates.remove_duplicates()
+        remove_duplicates.main()
     elif opcion == "2":
         combo_extractor.extract_combos()
     elif opcion == "3":
@@ -32,7 +32,7 @@ def main():
     elif opcion == "5":
         domain_extractor.main()
     elif opcion == "6":
-        domain_sorter.main()
+        domain_sorter.domain_sorter()
     else:
         print("Opción no válida.")
 
