@@ -32,7 +32,7 @@ def main():
     elif opcion == "5":
         domain_extractor.main()
     elif opcion == "6":
-        domain_sorter.domain_sorter()
+        domain_sorter.main()
     else:
         print("Opción no válida.")
 

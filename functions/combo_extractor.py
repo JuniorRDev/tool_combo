@@ -6,7 +6,7 @@ def is_email(text):
     """Verifica si el texto es un correo electrónico válido"""
     return re.match(r"[^@]+@[^@]+\.[^@]+", text)
 
-def extract_combos():
+def main():
     # Seleccionar archivo
     file_path = filedialog.askopenfilename(title="Seleccionar el archivo a extraer", defaultextension=".txt")
     if not file_path:
@@ -27,7 +27,7 @@ def extract_combos():
             email, *rest = line.split(":")
             if not is_email(email) or not rest:
                 continue
-            password = rest[0].split()[0]
+            password = line.split(":")[-1].strip()
             combo = f"{email}:{password}"
             line_count += 1
             if combo in duplicates:
@@ -53,4 +53,4 @@ def extract_combos():
 if __name__ == "__main__":
     root = tk.Tk()
     root.withdraw()
-    extract_combos()
+    main()
