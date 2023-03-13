@@ -13,7 +13,7 @@ def main():
         messagebox.showerror("Error", "No se ha seleccionado ningún archivo.")
         return # Salir si no se seleccionó ningún archivo
     # Pedir nombre para archivo de salida
-    output_file = filedialog.asksaveasfilename(title="Seleccionar el archivo de salida", defaultextension='.txt')
+    output_file = filedialog.asksaveasfilename(title="Guardar como", defaultextension='.txt')
 
     combos = []
     duplicates = set()

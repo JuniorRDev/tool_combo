@@ -28,7 +28,7 @@ def main():
 
     # Verificar si se seleccionó al menos un archivo
     if not rutas_archivos:
-        print("No se seleccionó ningún archivo.")
+        messagebox.showerror("Error", "No se ha seleccionado ningún archivo.")
         return
     else:
         # Combinar los contenidos de los archivos seleccionados y eliminar las líneas repetidas y vacías
@@ -45,7 +45,7 @@ def main():
 
             messagebox.showinfo("Completado", f"Se combinaron {len(rutas_archivos)} archivos y se escribieron {len(lineas_unicas)} líneas únicas en el archivo:\n{ruta_salida}")
         else:
-            print("No se seleccionó ningún archivo de salida.")
+            messagebox.showerror("Error","No se seleccionó o dió nombre para crear un nuevo archivo de salida.")
 
 
 if __name__ == '__main__':

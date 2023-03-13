@@ -56,7 +56,7 @@ def main():
         
         # Verificar si se ingresó algún dominio
         if not dominios:
-            print("No se ingresó ningún dominio.")
+            messagebox.showerror("Error","No se ingresó ningún dominio.")
             return
 
         # Convertir los dominios a una lista y verificar si todos comienzan con "@"
@@ -71,7 +71,7 @@ def main():
 
     # Verificar si se seleccionó un archivo
     if not ruta_combo:
-        print("No se seleccionó ningún archivo.")
+        messagebox.showerror("Error","No se seleccionó ningún archivo.")
         return
 
     # Leer las líneas del archivo combo
@@ -83,7 +83,7 @@ def main():
 
     # Verificar si se encontraron líneas para los dominios especificados
     if not lineas_dominio:
-        print(f"No se encontraron líneas con los dominios {', '.join(dominios)}.")
+        messagebox.showinfo("Error",f"No se encontraron líneas con los dominios {', '.join(dominios)}.")
         return
 
     # Eliminar las líneas duplicadas
@@ -91,7 +91,7 @@ def main():
 
     # Verificar si quedaron dominios para buscar
     if not lineas_sin_duplicados:
-        print(f"No se encontraron líneas con los dominios {', '.join(dominios)}.")
+        messagebox.showinfo("Error",f"No se encontraron líneas con los dominios {', '.join(dominios)}.")
         return
 
     #Guardar las líneas sin duplicados en un archivo con un nombre genérico en una carpeta con la fecha y hora actual

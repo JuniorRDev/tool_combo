@@ -22,7 +22,7 @@ def main():
 
     # Verificar si se seleccionó un archivo
     if not ruta_archivo1:
-        print("No se seleccionó ningún archivo.")
+        messagebox.showerror("Error","No se seleccionó ningún archivo.")
         return
 
     # Leer el contenido del primer archivo y guardar cada línea que tiene formato email:pass en un conjunto (set).
@@ -33,12 +33,12 @@ def main():
 
     # Verificar si se seleccionó un archivo
     if not ruta_archivo2:
-        print("No se seleccionó ningún archivo.")
+        messagebox.showerror("Error","No se seleccionó ningún archivo.")
         return
 
     # Verificar si el archivo existe
     if not os.path.exists(ruta_archivo2):
-        print("El archivo seleccionado no existe.")
+        messagebox.showerror("Error","El archivo seleccionado no existe.")
         return
 
     # Leer el contenido del segundo archivo y guardar cada línea que tiene formato email:pass en un conjunto (set).
@@ -59,7 +59,7 @@ def main():
 
             messagebox.showinfo("Completado", f"Se encontraron {len(diferentes)} líneas diferentes y se escribieron en el archivo:\n{ruta_salida}")
         else:
-            print("No se seleccionó ningún archivo de salida.")
+            messagebox.showerror("Error","No se seleccionó ningún archivo de salida.")
     else:
         messagebox.showinfo("Completado", "Los archivos son iguales.")
 
