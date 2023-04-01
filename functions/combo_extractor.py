@@ -2,18 +2,22 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 import re
 
+
 def is_email(text):
     """Verifica si el texto es un correo electrónico válido"""
     return re.match(r"[^@]+@[^@]+\.[^@]+", text)
 
+
 def main():
     # Seleccionar archivo
-    file_path = filedialog.askopenfilename(title="Seleccionar el archivo a extraer", defaultextension=".txt")
+    file_path = filedialog.askopenfilename(
+        title="Seleccionar el archivo a extraer", defaultextension=".txt")
     if not file_path:
         messagebox.showerror("Error", "No se ha seleccionado ningún archivo.")
-        return # Salir si no se seleccionó ningún archivo
+        return  # Salir si no se seleccionó ningún archivo
     # Pedir nombre para archivo de salida
-    output_file = filedialog.asksaveasfilename(title="Guardar como", defaultextension='.txt')
+    output_file = filedialog.asksaveasfilename(
+        title="Guardar como", defaultextension='.txt')
 
     combos = []
     duplicates = set()
@@ -49,6 +53,7 @@ def main():
         if duplicate_count > 0:
             message += f"Se eliminaron {duplicate_count} lineas duplicados."
     tk.messagebox.showinfo("Extracción de combos", message)
+
 
 if __name__ == "__main__":
     root = tk.Tk()
